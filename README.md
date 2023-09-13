@@ -85,7 +85,7 @@ ALLOWED_HOST = ["*"]
    To make the application accessible online, I deployed it to Adaptable or a similar hosting service. Here are the general steps I followed:
    - I ensured that my Django project was under version control with Git.
    - I pushed my project code to the GitHub repository.
-   - I used Adaptable or a similar service to deploy my Django application, following their deployment instructions to make the app accessible online.
+   - I used Adaptable or a similar service to deploy my Django application, following my lecture's deployment instructions to make the app accessible online.
   
 ---
 ### -> Create a diagram explaining the flow of client requests to a Django web app and its response
