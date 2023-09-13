@@ -161,7 +161,7 @@ A virtual environment is a self-contained directory tree that contains a Python 
 Yes, we can create a Django web app without a virtual environment. However, there are some downsides to this:
 1. Potential Dependency Conflicts: Without using a virtual environment, it will risk running into issues where Django or one of its dependencies conflicts with another library or application on our system.
 2. System Pollution: Installing everything globally can clutter the system's Python environment with unnecessary packages.
-3. Versioning Issues: If we're working on two Django projects where one uses Django 2.x and the other uses Django 3.x, we'll face issues if ywe don't use separate virtual environments.
+3. Versioning Issues: If we're working on two Django projects where one uses Django 2.x and the other uses Django 3.x, we'll face issues if we don't use separate virtual environments.
 4. Deployment Challenges: It becomes more challenging to ensure that our production environment matches our development environment in terms of dependencies and versions, which can lead to unexpected behaviours and bugs.
 
 Using virtual environments is a best practice in Python development, especially with web frameworks like Django, because of the challenges and risks mentioned above. While it's not strictly required, it's highly recommended.
