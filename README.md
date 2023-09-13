@@ -24,7 +24,7 @@
   - Navigated to the directory where I wanted to store my Git projects using the command `cd <directory_name>`.
   - Initialized a new repository with the command `git init`. This command created an empty Git repository in my chosen directory.
   - Create and activate the virtual environment by running the following command `python -m venv env` and `env\Scripts\activate.bat`.
-  - Created a file named requirements.txt and install the dependencies with the following command `pip install -r requirements.txt`.
+  - Created a file named requirements.txt and installed the dependencies with the following command `pip install -r requirements.txt`.
   - Create a Django project using this command `django-admin startproject inventory_list`.
   - Add "*" on `ALLOWED_HOST` in `settings.py`
 ```
@@ -35,7 +35,7 @@ ALLOWED_HOST = ["*"]
 
     I needed to create a new app within my Django project. Here's the process I followed:
   - Ran the following command: `python manage.py startapp main`. This command created a new app named "main" within my project.
-  - Add `'main'` on the list of existing applications in settings.py.
+  - Add `'main'` to the list of existing applications in settings.py.
   - Create folder `templates` inside `main` also `main.html` inside the folder.
 
 3. **Creating a URL routing configuration to access the 'main' app**
@@ -52,7 +52,7 @@ ALLOWED_HOST = ["*"]
 4. **Creating a model within the 'main' app**
 
    I needed to define a model within the 'main' app with specific attributes. Here's how I implemented it:
-  - In the `main` app directory, I opened the `models.py` and modify it with the mandatory attributes.
+  - In the `main` app directory, I opened the `models.py` and modified it with the mandatory attributes.
   - In this step, I created a model named `Item` within the 'main' app. The model will define the attributes of items in my inventory management application.
 
 5. **Creating a function in 'views.py' to return an HTML template**
@@ -162,7 +162,7 @@ Yes, you can create a Django web app without a virtual environment. However, the
 1. Potential Dependency Conflicts: Without using a virtual environment, you risk running into issues where Django or one of its dependencies conflicts with another library or application on your system.
 2. System Pollution: Installing everything globally can clutter your system's Python environment with unnecessary packages.
 3. Versioning Issues: If you're working on two Django projects where one uses Django 2.x and the other uses Django 3.x, you'll face issues if you don't use separate virtual environments.
-4. Deployment Challenges: It becomes more challenging to ensure that your production environment matches your development environment in terms of dependencies and versions, which can lead to unexpected behaviors and bugs.
+4. Deployment Challenges: It becomes more challenging to ensure that your production environment matches your development environment in terms of dependencies and versions, which can lead to unexpected behaviours and bugs.
 
 Using virtual environments is a best practice in Python development, especially with web frameworks like Django, because of the challenges and risks mentioned above. While it's not strictly required, it's highly recommended.
 
@@ -183,10 +183,10 @@ Using virtual environments is a best practice in Python development, especially 
 **MVVM (Model-View-ViewModel):**
 - **Model**: Represents the data.
 - **View**: Displays the data, purely the UI.
-- **ViewModel**: An abstraction of the view, holds presentational logic.
+- **ViewModel**: An abstraction of the view, that holds presentational logic.
 
 **Differences:** 
-1. **MVC**: A discrete separation in which the controller serves as a connectipn between the Model and the View.
+1. **MVC**: A discrete separation in which the controller serves as a connection between the Model and the View.
 2. **MVT**: This is primarily used in Django. The "View" works more like a controller, whereas the "Template" is similar to the MVC view.
 3. **MVVM**: Suitable for applications with an abundant user interface, such as those built using WPF or Angular. It connects the View and ViewModel, allowing them to communicate with one another.
 
