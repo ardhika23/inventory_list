@@ -101,7 +101,7 @@ graph TB
         B[urls.py]
         C[views.py]
         D[models.py]
-        E[HTML]
+        E[HTML Template]
     end
 
     subgraph Database
@@ -132,15 +132,15 @@ Here's a step-by-step explanation of the depicted process:
     - **Action**: Depending on the nature of the request (e.g., GET, POST), the view might fetch or update data from the database using models.
 
 4. **Data Access**: The views might also need to access certain HTML templates to generate a response.
-    - **Component**: views.py & HTML
+    - **Component**: views.py & HTML Template
     - **Action**: The view fetches the relevant HTML template if needed.
 
 5. **Render Template**: The models help in fetching the necessary data which is then used to populate and render the HTML templates.
-    - **Component**: models.py & HTML
+    - **Component**: models.py & HTML Template
     - **Action**: The actual data is filled into the template to create a meaningful HTML page for the user.
 
 6. **HTML Response**: The populated HTML template is then sent back as a response to the browser.
-    - **Component**: HTML & Browser
+    - **Component**: HTML Template & Browser
     - **Action**: The rendered HTML page is displayed on the user's browser.
 
 7. **Access**: This is a separate process where models interact with the database tables to perform CRUD operations.
