@@ -93,7 +93,7 @@ ALLOWED_HOST = ["*"]
 ```mermaid
 graph TB
 
-    subgraph Client
+    subgraph User
         A[Browser]
     end
 
