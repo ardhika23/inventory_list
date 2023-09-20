@@ -238,6 +238,9 @@ JSON is simple to produce and understand because it uses a human-readable format
 
 ### -> Explain how you implemented the checklist above step-by-step (not just following the tutorial).
 1. **Create a new file inside the `main` folder named `forms.py`**
+
+   I created a new file inside the `main` folder named `forms.py` to creating a form that interfaces with my database models, specifically to add, edit, or display products.
+   
    ```
    from django.forms import ModelForm
    from main.models import Product
@@ -250,7 +253,7 @@ JSON is simple to produce and understand because it uses a human-readable format
 
 2. **Create a base template**
 
-   In this step, I created a folder named `templates` in the **root directory**. Inside the `templates` folder, I also created a file named `base.html`. This file will serve as a base template, providing a general structure for our website's pages.
+   In this step, I created a folder named `templates` in the **root directory**. Inside the `templates` folder, I also created a file named `base.html`. This file will serve as a base template, providing a general structure for my website's pages.
 
    ```
    {% load static %}
@@ -331,7 +334,7 @@ JSON is simple to produce and understand because it uses a human-readable format
        return HttpResponse(serializers.serialize("json", data), content_type="application/json")
    ```
 
-3. **Add new routings to `urls.py`**
+4. **Add new routings to `urls.py`**
    
    I imported the previously created `create_product` function. `from main.views import show_main, create_product` and also add a new url path inside the `urlpatterns` list to access the previously imported function.
    
@@ -349,9 +352,9 @@ JSON is simple to produce and understand because it uses a human-readable format
        path('json/<int:id>/', show_json_by_id, name='show_json_by_id'),
    ```
 
-4. **Creating a new HTML file named `create_product.html`**
+5. **Creating a new HTML file named `create_product.html`**
 
-   At this point, I navigated to the templates subdirectory inside the main folder and crafted a new HTML file named `create_product.html`.
+   At this point, I navigated to the templates subdirectory inside the main folder and crafted a new HTML file named `create_product.html`. This code is used for creating a web form to add new products  and submit them to the database.
    
    ```
    {% extends 'base.html' %} 
