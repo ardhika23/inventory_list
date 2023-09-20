@@ -276,7 +276,7 @@ JSON is simple to produce and understand because it uses a human-readable format
    
 3. **Updating `views.py`**
    
-   In this step, I incorporated certain imports and devised a new function named `create_product` that takes a `request` parameter. Concurrently, I adjusted the `show_main` function within `views.py`.
+   At this stage, I incorporated certain imports and devised a new function named `create_product` that takes a `request` parameter. Concurrently, I adjusted the `show_main` function within `views.py`.
 
    During this phase, I enhanced the `views.py` to support product creation and introduced the capability to retrieve data in both XML and JSON formats. I also added functionality to obtain data based on the product ID in both XML and JSON formats.
    
@@ -351,7 +351,7 @@ JSON is simple to produce and understand because it uses a human-readable format
 
 4. **Creating a new HTML file named `create_product.html`**
 
-   In this step, I navigated to the templates subdirectory inside the main folder and crafted a new HTML file named `create_product.html`.
+   At this point, I navigated to the templates subdirectory inside the main folder and crafted a new HTML file named `create_product.html`.
    
    ```
    {% extends 'base.html' %} 
