@@ -19,6 +19,24 @@ from django.urls import reverse
 @login_required(login_url='/login')
 def show_main(request):
     products = Product.objects.filter(user=request.user)
+    if request.method == 'POST':
+        if 'increment' in request.POST:
+            product_id = request.POST.get('increment')
+            product = products.get(id=product_id)
+            product.amount += 1
+            product.save()
+            return HttpResponseRedirect(reverse('main:show_main'))
+        elif 'decrement' in request.POST:
+            product_id = request.POST.get('decrement')
+            product = products.get(id=product_id)
+            product.amount -= 1
+            product.save()
+            return HttpResponseRedirect(reverse('main:show_main'))
+        elif 'delete' in request.POST:
+            product_id = request.POST.get('delete')
+            product = products.get(id=product_id)
+            product.delete()
+            return HttpResponseRedirect(reverse('main:show_main'))
 
     counter = products.count()
 
@@ -28,8 +46,8 @@ def show_main(request):
         'class': 'PBP KKI',
         'products': products,
         'counter' : counter,
-        'last_login': request.COOKIES['last_login'],
-    }
+        'last_login': request.COOKIES.get('last_login', ''),
+            }
 
     return render(request, 'main.html', context)
 
@@ -41,6 +59,9 @@ def create_product(request):
         product.user = request.user
         product.save()
         return HttpResponseRedirect(reverse('main:show_main'))
+    
+    context = {'form': form}
+    return render(request, "create_product.html", context)
 
 def show_xml(request):
     data = Product.objects.all()
