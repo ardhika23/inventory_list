@@ -731,6 +731,7 @@ Yes, cookies can be secure to use when proper security measures are applied, but
    ```
 
 5. **Account and Dummy Data Creation**
+   
    Establish two user accounts and generate three dummy data entries for each account, utilizing the previously defined model.
 
 ---
