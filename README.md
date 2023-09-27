@@ -439,4 +439,298 @@ JSON is simple to produce and understand because it uses a human-readable format
 
    ![image](https://github.com/ardhika23/inventory_list/assets/143513359/b99d6dbc-9d68-445d-be1f-f099c66e6512)
 
+---
 
+## Assignment 4: Implementing Authentication, Sessions, and Cookies in Django
+
+## Questions and Answers
+
+### -> What is `UserCreationForm` in Django? Explain its advantages and disadvantages.
+`UserCreationForm` is a built-in form that eases us to create a user registration form. With this form, we can create a registration form without needing to code it from scratch. The `UserCreationForm` in Django is a model form class, provided by Django’s authentication framework, which is specifically designed to manage the user creation process. Django is a high-level Python Web framework that encourages rapid development and clean, pragmatic design.
+
+**`UserCreationForm` Overview**:
+`UserCreationForm` is used to create new user instances. It comes pre-built with fields for the username, password1 (password), and password2 (password confirmation). When used in combination with Django’s authentication views and templates, it provides an out-of-the-box solution for user registration.
+
+**Advantages of `UserCreationForm`**:
+   1. **Simplicity and Time Efficiency**:
+      - It is straightforward and easy to use. 
+      - It helps in creating user registration forms quickly as it includes the essential fields required for user   creation.
+      - Saves time as developers do not have to create a registration form from scratch.
+
+   2. **Security**:
+      - Manages password hashing and salting, ensuring password security.
+      - It includes built-in validation for password confirmation and can include custom password validation rules.
+
+   3. **Customizability and Extensibility**:
+      - Can be extended to include additional fields if the default fields are not sufficient for the application’s needs.
+      - Can be customized to alter its default behavior and appearance.
+        
+   4. **Integration**:
+      - Easily integrates with Django’s built-in User model and authentication system.
+      - Can be readily used with Django’s class-based views, like CreateView, to quickly create registration views.
+        
+**Disadvantages of `UserCreationForm`**:
+   1. **Limited Fields**:
+      - It comes with a very limited set of fields – username, password1, and password2. If more information needs to be collected during user registration, developers will have to extend this form or create a custom form.
+
+   2. **Styling and Customization**:
+      - The default form may not meet the styling or structural requirements of all projects, necessitating additional customization which may not be straightforward for beginners.
+
+   3. **Overhead**:
+      - For extremely simple or unconventional projects, the built-in form and the accompanying processes might seem to have unnecessary overhead.
+      - If the project requires a highly custom user creation process, developers might opt to create their own user creation forms and views.
+
+---
+
+### -> What is the difference between authentication and authorization in Django application? Why are both important?
+Authentication and Authorization are crucial security mechanisms, and though they are related, they serve different purposes. Here’s a detailed breakdown of what they mean and why they are essential, especially in a Django application:
+
+**Authentication**:
+- **Definition**: Authentication is the process of verifying the identity of a user, system, or application. It ensures that a user is who they claim to be.
+- **In Django**: Django’s built-in authentication system handles user authentication. It provides forms and views to handle user login, logout, password reset, etc.
+- **Importance**: Without authentication, there is no way to ensure that users are who they say they are, leading to significant security risks. It is the fundamental step before authorization and is crucial to protect user data and restrict access.
+  
+**Authorization**:
+- **Definition**: Authorization is the process of verifying what a user, system, or application is allowed to do after they are authenticated. It determines the permissions an authenticated user has within the application.
+- **In Django**: Django provides a built-in permission system to handle user authorization. It allows defining permissions at the model level and associating them with user instances. Django also supports creating custom permissions to implement complex authorization rules.
+- **Importance**: Authorization is crucial to protect sensitive operations and data within the application. It ensures that users can only perform actions and access data they are allowed to, preventing unauthorized access and modifications.
+
+**Why are Both Important in a Django Application?**
+
+   1. **Security**:
+      - Together, authentication and authorization provide a layer of security that protects user data and resources from unauthorized access and potential malicious activities.
+      - They ensure that only authenticated and authorized users can access certain parts of the application, preventing security breaches.
+
+   2. **User Management**:
+      - They allow developers to implement user management within applications, giving different access levels to different users, such as regular users, staff users, and superusers.
+   - This is essential for creating multi-user applications with different roles and responsibilities, such as admin panels.
+     
+   3. **Data Integrity**:
+      - They help maintain data integrity by preventing unauthorized modifications or deletions of data.
+      - By controlling who has access to modify data, they help in maintaining the reliability and accuracy of the application data.
+        
+   4. **Compliance**:
+      - Many applications need to comply with various regulatory standards that require strict authentication and authorization mechanisms to protect user data.
+      - Implementing proper mechanisms is crucial for legal compliance and protecting user privacy.
+        
+   5. **User Trust**:
+      - Implementing robust authentication and authorization processes can help in building trust with the users as they can be assured that their data is secure and can only be accessed or modified by authorized entities.
+
+---
+
+### -> What are cookies in website? How does Django use cookies to manage user session data?
+**Cookies in Websites**:
+Cookies are small pieces of data stored on the client-side, which the web server sends to the user's web browser. The browser may then store the cookie and send the cookie information back to the server with every subsequent request to the same server. Typically, it's used to tell if two requests come from the same browser, like storing and managing user preferences, tracking users, and enabling session management on websites.
+
+**Django and Cookies for Session Management**:
+Django can use cookies to manage user session data, allowing for persistent sessions across requests. In Django, when a user logs in, the server creates a unique session ID and sends it to the client as a cookie. When the client sends a subsequent request, it includes the session ID cookie, allowing the server to retrieve the corresponding session data stored on the server-side.
+
+---
+
+### -> Are `cookies` secure to use? Is there potential risk to be aware of?
+Yes, cookies can be secure to use when proper security measures are applied, but there are potential risks to be aware of.
+
+**Risks**:
+   1. **Session Hijacking**: Cookies can be stolen, enabling unauthorized users to impersonate the legitimate user.
+   2. **Cross-Site Scripting (XSS)**: Cookies can be accessed through malicious scripts.
+   3. **Cross-Site Request Forgery (CSRF)**: Attackers can force users to perform actions unknowingly.
+   4. **Man-In-The-Middle Attacks**: Cookies can be intercepted over insecure connections.
+   5. **Third-Party Tracking**: Privacy concerns due to tracking users across different sites.
+   6. **Data Integrity**: Tampering risk if cookies are not properly signed and encrypted.
+   
+**Mitigations**:
+   1. **Use HttpOnly Attribute**: To protect cookies from being accessed by client-side scripts.
+   2. **Use Secure Attribute**: To ensure cookies are sent only over HTTPS.
+   3. **Implement SameSite Attribute**: To protect against CSRF attacks.
+   4. **Obtain User Consent**: For setting cookies and inform them about cookie policies.
+   5. **Do Not Store Sensitive Data**: Store sensitive data server-side and use cookies only for storing session IDs or non-sensitive data.
+   6. **Sign and Encrypt Cookies**: To ensure data integrity and confidentiality.
+
+---
+
+### -> Explain how you implemented the *checklist* above step-by-step (not just following the tutorial).
+
+1. **Developing Registration Form and Functionality**
+   - Initiate the virtual environment and open the `views.py` file. Subsequently, incorporate the imports for `redirect`,    `UserCreationForm`, and `messages` at the commencement of the file.
+   ```
+     from django.shortcuts import redirect
+     from django.contrib.auth.forms import UserCreationForm
+     from django.contrib import messages
+     ```
+   - Create a `register` function in `views.py`
+     ```
+     def register(request):
+     form = UserCreationForm()
+
+       if request.method == "POST":
+           form = UserCreationForm(request.POST)
+           if form.is_valid():
+               form.save()
+               messages.success(request, 'Your account has been successfully created!')
+               return redirect('main:login')
+       context = {'form':form}
+       return render(request, 'register.html', context)
+      ```
+   - Construct a new HTML file and name it `register.html`, placing it within the main/templates directory.
+     
+      ```
+        {% extends 'base.html' %}
+
+         {% block meta %}
+             <title>Register</title>
+         {% endblock meta %}
+
+         {% block content %}  
+
+         <div class = "login">
+    
+             <h1>Register</h1>  
+
+                 <form method="POST" >  
+                     {% csrf_token %}  
+                     <table>  
+                         {{ form.as_table }}  
+                         <tr>  
+                             <td></td>
+                             <td><input type="submit" name="submit" value="Daftar"/></td>  
+                         </tr>  
+                     </table>  
+                 </form>
+
+               {% if messages %}  
+                 <ul>   
+                     {% for message in messages %}  
+                         <li>{{ message }}</li>  
+                         {% endfor %}  
+                 </ul>   
+             {% endif %}
+
+         </div>  
+
+         {% endblock content %}
+
+         ```
+
+2. **Developing a Login Function, Incorporating Last Login Date to Cookies, and Displaying Last Login on the Main Page**
+   
+      - Within `views.py`, integrate `authenticate` and `login`. Subsequently, formulate a `login_user` function that retrieves the last login date and incorporates it into the cookie, as demonstrated in the following code:
+      ```
+      from django.contrib.auth import authenticate, login
+      ```
+
+      ```
+      def login_user(request):
+          if request.method == 'POST':
+           username = request.POST.get('username')
+           password = request.POST.get('password')
+           user = authenticate(request, username=username, password=password)
+           if user is not None:
+               login(request, user)
+               response = HttpResponseRedirect(reverse("main:show_main")) 
+               response.set_cookie('last_login', str(datetime.datetime.now()))
+               return response
+           else:
+               messages.info(request, 'Sorry, incorrect username or password. Please try again.')
+         context = {}
+       return render(request, 'login.html', context)
+      ```
+
+      - Construct a new HTML file, naming it `login.html`, and position it inside the main/templates directory.
+     
+      ```
+      {% extends 'base.html' %}
+
+      {% block meta %}
+          <title>Login</title>
+      {% endblock meta %}
+
+      {% block content %}
+
+      <div class = "login">
+
+          <h1>Login</h1>
+
+          <form method="POST" action="">
+              {% csrf_token %}
+              <table>
+                  <tr>
+                      <td>Username: </td>
+                      <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
+                  </tr>
+                    
+                  <tr>
+                      <td>Password: </td>
+                      <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
+                  </tr>
+
+                  <tr>
+                       <td></td>
+                      <td><input class="btn login_btn" type="submit" value="Login"></td>
+                  </tr>
+              </table>
+          </form>
+
+          {% if messages %}
+              <ul>
+                  {% for message in messages %}
+                      <li>{{ message }}</li>
+                  {% endfor %}
+              </ul>
+          {% endif %}     
+        
+          Don't have an account yet? <a href="{% url 'main:register' %}">Register Now</a>
+
+      </div>
+
+      {% endblock content %}
+
+      ```
+
+   - Modify `views.py` and incorporate the logout_user function as illustrated below:
+     
+     ```
+      def logout_user(request):
+          logout(request)
+          response = HttpResponseRedirect(reverse('main:login'))
+          response.delete_cookie('last_login')
+          return response
+     ```
+     
+    Establish the routing for this function in `urls.py`. Integrate a `logout` button in `main.html` to facilitate user logout.
+
+3. **Implementing Access Restrictions to the Main Page for Unauthenticated Users**
+      
+     Within `views.py`, incorporate `login_required` and then place `@login_required(login_url='/login')` above the `show_main` function to enforce login restrictions.
+
+4. **Refining the create_product Function**
+      
+     ```
+      def create_product(request):
+      form = ProductForm(request.POST or None)
+
+      if form.is_valid() and request.method == "POST":
+          product = form.save(commit=False)
+          product.user = request.user
+          product.save()
+          return HttpResponseRedirect(reverse('main:show_main'))
+   
+     ```
+
+     The `create_product` function in Django initializes a `ProductForm`, either with the submitted POST data if available or as an unpopulated form if no data is present. Upon the form's submission and subsequent validation, the function employs `form.save(commit=False)`, allowing for alterations to the product object prior to its database storage. It specifically assigns the currently authenticated user to the product’s user attribute, linking the product to the appropriate user. Post the assignment of the user attribute, the product object undergoes storage in the database through `product.save()`. Subsequently, the user experiences a redirection to the 'main:show_main' URL pattern, signaling the successful product creation.
+
+   - Modify the `show-main` function :
+   ```
+   def show_main(request):
+       products = Product.objects.filter(user=request.user)
+
+       context = {
+           'name': request.user.username,
+       ...
+   ...
+
+   ```
+
+5. **Account and Dummy Data Creation**
+   Establish two user accounts and generate three dummy data entries for each account, utilizing the previously defined model.
+
+---
