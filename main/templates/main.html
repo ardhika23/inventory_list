@@ -1,6 +1,42 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+    <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+        <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Dropdown
+                </a>
+                <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+            </li>
+             </ul>
+             <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+        </div>
+    </nav>
+
+
     <h1>Inventory List Page</h1>
 
     <h5>Name:</h5>
@@ -13,13 +49,15 @@
 
 <table>
     <tr>
-        <th>Name</th>
-        <th>Amount</th>
-        <th>Price</th>
-        <th>Description</th>
-        <th>Date Added</th>
+        <th style="text-align: center;">Name</th>
+        <th style="text-align: center;">Amount</th>
+        <th style="text-align: center;">Price</th>
+        <th style="text-align: center;">Description</th>
+        <th style="text-align: center;">Date Added</th>
+        <th style="text-align: center;">Actions</th>
     </tr>
-
+</thead>
+<tbody>
     {% comment %} Below is how to show the product data {% endcomment %}
 
     {% for product in products %}
@@ -32,20 +70,55 @@
             <td>
                 <form method="post">
                     {% csrf_token %}
-                    <button type="submit" name="increment" value="{{ product.id }}">
+                    <button type="submit" name="edit" value="{{ product.id }}" class="btn-standard">
+                        Edit Product
+                    </button>
+                    <button type="submit" name="increment" value="{{ product.id }}" class="btn-standard">
                         Increment Amount
                     </button>
-                    <button type="submit" name="decrement" value="{{ product.id }}">
+                    <button type="submit" name="decrement" value="{{ product.id }}" class="btn-standard">
                         Decrement Amount
                     </button>
-                    <button type="submit" name="delete" value="{{ product.id }}">
+                    <button type="submit" name="delete" value="{{ product.id }}" class="btn-standard">
                         Delete Product
                     </button>
                 </form>
-            <td>
+            </td>
         </tr>
     {% endfor %}
+</tbody>
 </table>
+
+<head>
+    <style>
+        .btn-standard {
+            width: 200px;
+            height: 50px;
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+            padding: 10px 20px;
+        }
+        /* Adding padding to table cells to space out products */
+        table td {
+            padding: 10px 5px; /* Adjust this as needed; top/bottom padding is 10px, left/right is 5px */
+        }
+
+        table {
+            border-collapse: collapse; /* Ensures that borders are not double-spaced */
+            width: 100%; /* Adjust this value if you want to change the table's width */
+        }
+
+        table, th, td {
+            border: 1px solid black; /* Adds borders to the table, header cells, and data cells */
+        }
+
+        th, td {
+            padding: 10px 5px; /* Adjust this as needed; top/bottom padding is 10px, left/right is 5px */
+            text-align: left; /* Aligns text to the left; adjust if needed */
+        }
+    </style>
+</head>
 
 <br />
 
