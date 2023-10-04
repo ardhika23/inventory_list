@@ -1,5 +1,4 @@
 # 📝Inventory List📝
-## Assignment 2: Model-View-Template (MVT) Implementation on Django
 
 **Student Details :**
 
@@ -11,6 +10,8 @@
 | Website URL   | https://inventorylist.adaptable.app/main/ |
 
 ---
+<details>
+<summary>Assignment 2: Model-View-Template (MVT) Implementation on Django</summary>
 
 ## Questions and Answers
 
@@ -192,9 +193,12 @@ Using virtual environments is a best practice in Python development, especially 
 
 While all three are architectural patterns aimed at separating concerns, they differ in how they divide jobs and duties.
 
+</details>
+
 ---
 
-## Assignment 3: Forms and Data Delivery Implementation in Django
+<details>
+<summary>Assignment 3: Forms and Data Delivery Implementation in Django</summary>
 
 ## Questions and Answers
 
@@ -439,9 +443,12 @@ JSON is simple to produce and understand because it uses a human-readable format
 
    ![image](https://github.com/ardhika23/inventory_list/assets/143513359/b99d6dbc-9d68-445d-be1f-f099c66e6512)
 
+</details>
+
 ---
 
-## Assignment 4: Implementing Authentication, Sessions, and Cookies in Django
+<details>
+<summary>Assignment 4: Implementing Authentication, Sessions, and Cookies in Django</summary>
 
 ## Questions and Answers
 
@@ -733,5 +740,542 @@ Yes, cookies can be secure to use when proper security measures are applied, but
 5. **Account and Dummy Data Creation**
    
    Establish two user accounts and generate three dummy data entries for each account, utilizing the previously defined model.
+
+</details>
+
+---
+
+<details>
+<summary>Assignment 5: Web Design using HTML, CSS, and CSS Framework</summary>
+
+## Questions and Answers
+
+### -> Explain the purpose of some CSS element selector and when to use it.
+
+1. The CSS element selector is a sort of selector that targets HTML elements based on their tag name. It enables you to apply styles to all instances of a specified HTML element in your document. The CSS element selector is like to pointing to a category of goods at a store and saying, "I want all goods of this category to look this way." For instance, if you're in a shop and decide that all hardcover books should have blue stickers, "hardcover books" would be the equivalent of the "element" in CSS.
+
+   Purpose:
+1. Uniformity: By using the element selector, all elements of the same type will have the same appearance. This ensures that the design of your website is consistent.
+2. Simplicity: Instead of adding a class or an ID to each and every element you want to style, simply use the element's name, making your HTML clearer.
+3. Baseline Styles: Using default styles for elements (such as the default font for all paragraphs) to set the tone for further styles is a frequent practise
+
+   How to use it: 
+
+   Imagine you have an HTML document, and you want to style all the paragraphs (`<p>`) and headings (`<h1>`).
+
+   HTML:
+   ```html
+   <h1>Welcome to My Website</h1>
+   <p>This is a paragraph about my website.</p>
+   <h1>Another Heading</h1>
+   <p>Here is another paragraph with more details.</p>
+   ```
+
+   CSS:
+   To make all the `<h1>` elements have a red color and all the `<p>` elements have a blue color, you'd use the CSS element selector like this:
+
+   ```css
+   h1 {
+       color: red;
+   }
+
+   p {
+       color: blue;
+   }
+   ```
+
+   In this example:
+
+   - `h1` is the element selector for all `<h1>` elements.
+   - `p` is the element selector for all `<p>` elements.
+
+   Whenever the browser sees these selectors in the CSS, it says, "Alright, every `<h1>` tag should be red, and every `<p>` tag should be blue."
+
+   A Quick Tip:
+
+   Remember that styles set using element selectors are the baseline and can be overridden by more specific selectors (like class or ID selectors). So if you have a particular `<p>` that you want in green, you'd give it a class (e.g., `<p class="special">`) and then define that class in your CSS to override the blue color.
+
+---
+
+### -> Explain some of the HTML5 tags that you know.
+
+Imagine you have an old phone model, then one day a newer model with cooler features and greater performance is released. Similarly, HTML5 is the most recent version of HTML (as of my previous update). It's similar to an upgrade that includes new capabilities and improved compatibility for modern web features.
+
+I'll explain HTML5 tags in a very approachable way.
+
+`<header>`
+Think about a favourite magazine. You're aware that the magazine's name and perhaps this month's primary feature are at the top? That resembles the "header" tag. The title, logo, and major navigation of a website are often found in the first part of the page.
+
+`<footer>`
+Flip that magazine now all the way to the end. The page numbers, publication information, and possibly a few brief disclaimers will all be visible. Your "footer" on the web is that. The area at the bottom of your page is a handy place for credits, links, and other information.
+
+`<nav>`
+Do you recall those directories from the malls? the ones that outline the locations of each store? That resembles the "nav" bar. It's designed specifically for important navigation links to make it easier for users to navigate your website.
+
+`<article>`
+Let's get back to our magazine. An "article" is any story, feature, or interview that can be taken in isolation and comprehended. A blog post, news article, or any other self-contained piece of material would then be included in a "article" tag on a website.
+
+`<section>`
+Consider a book chapter. Each chapter has an own topic, correct? The "<section>" element is used on web pages to arrange related material under a theme. 
+
+`<figure>` and `<figcaption>`
+Have you ever seen those expensive coffee table books with large photos and short captions? The "figcaption" tag is that tiny caption, while the "<figure>" tag is like that image. Together, they present content (often an image) and a caption that go along with it.
+
+Example:
+
+```
+html
+<figure>
+    <img src="cute-dog.jpg" alt="A fluffy dog">
+    <figcaption>Meet Fluffy, the cutest dog in town.</figcaption>
+</figure>
+```
+
+`<aside>`
+Think of those little boxes or side notes in textbooks that give extra, but non-essential information. That's what <aside> does on a webpage. It holds content related to the main content but can be read separately, like a sidebar with fun facts.
+
+`<canvas>`
+Do you have any memories of drawing on white paper as as a kid? Similar to that blank sheet, but digital, is "canvas." It doesn't accomplish much by itself, but with a little help from JavaScript, it can transform into a place for images, animations, or even games.
+
+---
+
+### -> What are the differences between margin and padding?
+
+I'll explain it by comparing it to a gift package.
+
+Padding: The padding is the area between the gift and the box's inside walls. It is the area *within* the element's border, between the element's content and its border.
+
+Margin:
+This box is now placed within a gift bag. The margin is similar to the space between the box and the gift bag's interior walls. It is the area *outside* the element's border, between the element's border and elements around it.
+
+So in simpler terms:
+- Padding is the space *inside* the box, giving cushion to the content.
+- Margin is the space *outside* the box, separating it from other boxes.
+
+---
+
+### -> What are the differences between the CSS framework Tailwind and Bootstrap? When should we use Bootstrap rather than Tailwind, and vice versa?
+
+With Bootstrap, you may get ready-made elements with a specified appearance, such as buttons and navbars. Although they are pre-styled, you can customise them. On the other hand, Taliwind Offers low-level utility classes that help you create original designs from beginning. You create your own parts by fusing these tools rather than using premade ones. Although both Bootstrap and Tailwind CSS are well-liked front-end frameworks and technologies, their functions and methods of web creation differ. A comparison is provided below, along with advice on when you might prefer to utilise one over the other:
+
+Bootstrap:
+
+1. Component Library: Bootstrap comes with a collection of pre-made components, like navbars, modals, carousels, and others. Bootstrap could be a nice option if you require these right out of the box.
+2. Theming: Bootstrap is designed with a theming system that allows you to simply change the appearance of the entire framework by modifying a few Sass variables.
+3. Opinionated Design: Bootstrap has default design choices that make it easier to start a project quickly. If not customised, this could result in a lot of websites having a similar appearance.
+4. JavaScript Plugins: To provide some components more functionality, Bootstrap includes a number of jQuery plugins. Bootstrap is useful if you currently use jQuery and want these capabilities.4. JavaScript Plugins: Bootstrap includes several jQuery plugins to provide additional functionality to some components. If you're already using jQuery and want these features, Bootstrap is beneficial.
+
+Use Bootstrap When:
+- MVP or rapid prototyping.
+- When a large component library is required.
+- When you don't want to deal with component-by-component design decisions.
+
+CSS Tailwind
+
+1. Utility-first: Tailwind offers low-level utility classes rather than pre-styled components. This method enables quick development without having to leave your HTML, but it also could require you to create extra class names.
+2. Tailwind's level of customization is high. The spacing, colours, and other aspects of the design system can all be changed by modifying the configuration file.
+3. Less Opinionated Design: Tailwind does not impose a specific aesthetic. It offers resources for designing, which might result in websites with more distinctive looks.
+4. Tailwind just uses CSS; it does not need JavaScript. You must incorporate JavaScript libraries or create your own scripts if you want interactive components.
+5. Smaller Bundles: You can reduce file sizes by removing unnecessary CSS with the help of programmes like PurgeCSS (which is now included in Tailwind by default).
+
+When to Use Tailwind CSS: - Projects where you desire a distinctive design or additional design flexibility.
+- When you prefer to work with HTML and take a utility-first approach.
+- If you want to make sure the final build has the bare minimum of unnecessary CSS.
+- JavaScript applications employing React, Vue, or Angular, among other contemporary frameworks.
+
+In the end, it comes down to individual prefrence and the particular requirements of the project. Choose Bootstrap if you want pre-made elements and design. Choose Tailwind CSS if you prefer greater customizability, flexibility, and a utility-first philosophy. In any case, both programmes are widely used, have sizable communities, and rich documentation
+
+---
+
+### -> Explain how you implemented the checklist above step-by-step (not just following the tutorial).
+
+1. **Adding bootstrap framework**
+
+2. **Modify Templates**
+   
+   - base.html
+  
+```
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block meta %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% endblock meta %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: rgb(245, 245, 220);
+            ;
+
+        }
+
+        table {
+            background-color: rgb(255, 230, 204);
+        }
+
+        .navbar {
+            background-color: #E8A87C;
+        }
+
+        .card {
+            background-color: rgb(255, 230, 204);
+        }
+    </style>
+</head>
+
+<body>
+    {% block content %}
+    {% endblock content %}
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+
+</html>
+   
+```
+
+   - main.html
+
+```
+{% extends 'base.html' %}
+
+{% block content %}
+
+<nav class="navbar" style="background-color: bisque;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <h2>Inventory List Page</h2>
+        </a>
+
+        <span class="navbar-text">
+            <h3>Welcome, {{ name }}</h3>
+            <span>{{ class }}</span>
+        </span>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'main:logout' %}">Logout</a>
+                </li>
+            </ul>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<style>
+    .space-below-navbar {
+        margin-top: 50px;
+    }
+</style>
+
+<div class="container space-below-navbar">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Amount</th>
+                        <th>Price</th>
+                        <th>Description</th>
+                        <th>Date Added</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in products %}
+                    <tr>
+                        <td>{{product.name}}</td>
+                        <td>
+                            <div class="amount-box">
+                                <a href="{% url 'main:decrement_product' product.id %}">
+                                    <button class="btn btn-primary btn-sm">-</button>
+                                </a>
+                                <span class="amount-value">{{product.amount}}</span>
+                                <a href="{% url 'main:increment_product' product.id %}">
+                                    <button class="btn btn-primary btn-sm">+</button>
+                                </a>
+                            </div>
+                        </td>
+                        <td>{{product.price}}</td>
+                        <td>{{product.description}}</td>
+                        <td>{{product.date_added}}</td>
+                        <td>
+                            <a href="edit-product/{{ product.id }}">
+                                <button type="submit" class="btn btn-dark">Edit Product</button>
+                            </a>
+                            <a href="delete-product/{{ product.id }}">
+                                <button class="btn btn-dark">Delete Product</button>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<style>
+    .space-below-table {
+        margin-bottom: 50px;
+    }
+</style>
+
+<p>You have saved {{counter}} items in this application</p>
+
+<style>
+    .btn-standard {
+        width: 200px;
+        height: 50px;
+        display: inline-block;
+        text-align: center;
+        vertical-align: middle;
+        padding: 10px 20px;
+    }
+
+    table td,
+    table th {
+        text-align: center;
+        padding: 10px 5px;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+
+    .amount-value {
+        margin: 0 10px;
+    }
+
+    .table.table-bordered tbody tr:last-child {
+        background-color: lightgray;
+        color: black;
+    }
+</style>
+
+<h5>Last login session: {{ last_login }}</h5>
+
+<a href="{% url 'main:create_product' %}">
+    <button>
+        Add New Product
+    </button>
+</a>
+
+<a href="{% url 'main:logout' %}">
+    <button>
+        Logout
+    </button>
+</a>
+
+{% endblock content %}
+```
+
+   - login.html
+
+```
+<style>
+
+</style>
+
+{% extends 'base.html' %}
+
+{% block meta %}
+    <title>Login</title>
+    <!-- Make sure to include Bootstrap's CSS if not already in 'base.html' -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+{% endblock meta %}
+
+{% block content %}
+
+<div class="container h-100">
+    <div class="row justify-content-center h-100">
+        <div class="col-6 align-self-center">
+            <div class="card">
+                <div class="card-body">
+
+                    <h1 class="text-center">Inventory List</h1>
+
+                    <form method="POST" action="">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="username">Username:</label>
+                            <input type="text" id="username" name="username" placeholder="Username" class="form-control">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" id="password" name="password" placeholder="Password" class="form-control">
+                        </div>
+
+                        <div class="text-center">
+                            <input class="btn btn-primary login_btn" type="submit" value="Login">
+                        </div>
+                    </form>
+
+                    {% if messages %}
+                        <ul class="mt-3">
+                            {% for message in messages %}
+                                <li>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}     
+
+                    <p class="text-center mt-3">Don't have an account yet? <a href="{% url 'main:register' %}">Register Now</a></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+```
+
+4. register.html
+
+```
+<style>
+
+</style>
+
+{% extends 'base.html' %}
+
+{% block meta %}
+    <title>Register</title>
+    <!-- Make sure to include Bootstrap's CSS if not already in 'base.html' -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+{% endblock meta %}
+
+{% block content %}
+
+<div class="container h-100">
+    <div class="row justify-content-center h-100">
+        <!-- Adjusting the column width here -->
+        <div class="col-8 align-self-center">
+            <div class="card">
+                <!-- Adding some custom padding inside the card for more spacing -->
+                <div class="card-body py-5 px-4">
+
+                    <div class="login">
+
+                        <h1>Register</h1>
+
+                        <form method="POST">
+                            {% csrf_token %}
+                            <table>
+                                {{ form.as_table }}
+                                <tr>
+                                    <td></td>
+                                    <td><input type="submit" name="submit" value="Daftar"/></td>
+                                </tr>
+                            </table>
+                        </form>
+
+                        {% if messages %}
+                            <ul>
+                                {% for message in messages %}
+                                    <li>{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+```
+
+   - register.html
+
+```
+<style>
+
+</style>
+
+{% extends 'base.html' %}
+
+{% block meta %}
+    <title>Register</title>
+    <!-- Make sure to include Bootstrap's CSS if not already in 'base.html' -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+{% endblock meta %}
+
+{% block content %}
+
+<div class="container h-100">
+    <div class="row justify-content-center h-100">
+        <!-- Adjusting the column width here -->
+        <div class="col-8 align-self-center">
+            <div class="card">
+                <!-- Adding some custom padding inside the card for more spacing -->
+                <div class="card-body py-5 px-4">
+
+                    <div class="login">
+
+                        <h1>Register</h1>
+
+                        <form method="POST">
+                            {% csrf_token %}
+                            <table>
+                                {{ form.as_table }}
+                                <tr>
+                                    <td></td>
+                                    <td><input type="submit" name="submit" value="Daftar"/></td>
+                                </tr>
+                            </table>
+                        </form>
+
+                        {% if messages %}
+                            <ul>
+                                {% for message in messages %}
+                                    <li>{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+```
+
+</details>
 
 ---
