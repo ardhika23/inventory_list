@@ -1,19 +1,23 @@
 {% extends 'base.html' %} 
 
 {% block content %}
-<h1>Add New Product</h1>
-
-<form method="POST">
-    {% csrf_token %}
-    <table>
-        {{ form.as_table }}
-        <tr>
-            <td></td>
-            <td>
-                <input type="submit" value="Add Product"/>
-            </td>
-        </tr>
-    </table>
-</form>
-
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="card" style="max-width: 80%; padding: 20px;"> <!-- Card with a max-width of 80% of viewport and increased padding -->
+        <div class="card-body">
+            <h1 class="card-title text-center">Add New Product</h1>
+            <form method="POST">
+                {% csrf_token %}
+                <table class="mx-auto"> <!-- Centering the table within the card -->
+                    {{ form.as_table }}
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input type="submit" value="Add Product"/>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}

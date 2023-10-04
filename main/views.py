@@ -28,15 +28,11 @@ def show_main(request):
             return HttpResponseRedirect(reverse('main:show_main'))
         elif 'decrement' in request.POST:
             product_id = request.POST.get('decrement')
-            product = products.get(id=product_id)
-            product.amount -= 1
-            product.save()
+           
             return HttpResponseRedirect(reverse('main:show_main'))
         elif 'delete' in request.POST:
             product_id = request.POST.get('delete')
-            product = products.get(id=product_id)
-            product.delete()
-            return HttpResponseRedirect(reverse('main:show_main'))
+            
 
     counter = products.count()
 
@@ -125,4 +121,21 @@ def edit_product(request, id):
         return HttpResponseRedirect(reverse('main:show_main'))
 
     context = {'form': form}
-    return render(request, "edit_product.html", context)
+    return render(request, 'edit_product.html', context)
+
+def delete_product(request, id):
+    product = Product.objects.get()
+    product.delete()
+    return HttpResponseRedirect(reverse('main:show_main'))
+
+def decrement_product(request, id):
+    product = Product.objects.get(pk = id)
+    product.amount -= 1
+    product.save()
+    return HttpResponseRedirect(reverse('main:show_main'))
+
+def increment_product(request, id):
+    product = Product.objects.get(pk = id)
+    product.amount += 1
+    product.save()
+    return HttpResponseRedirect(reverse('main:show_main'))

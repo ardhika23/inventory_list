@@ -8,6 +8,9 @@ from main.views import register
 from main.views import login_user
 from main.views import logout_user
 from main.views import edit_product
+from main.views import delete_product
+from main.views import decrement_product
+from main.views import increment_product
 
 app_name = 'main'
 
@@ -22,4 +25,7 @@ urlpatterns = [
     path('login/', login_user, name='login'),
     path('logout/', logout_user, name='logout'),
     path('edit-product/<int:id>', edit_product, name='edit_product'),
+    path('delete-product/<int:id>', delete_product, name='delete_product'),
+    path('decrement-product/<int:id>', decrement_product, name='decrement_product'),
+    path('increment-product/<int:id>', increment_product, name='increment_product'),
 ]
