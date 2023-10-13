@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponseNotFound
 from django.urls import reverse
 from main.forms import ProductForm
 from main.models import Product
@@ -14,6 +14,8 @@ from django.contrib.auth.decorators import login_required
 import datetime
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 @login_required(login_url='/login')
@@ -123,19 +125,40 @@ def edit_product(request, id):
     context = {'form': form}
     return render(request, 'edit_product.html', context)
 
+def get_product_json(request):
+    product_item = Product.objects.filter(user=request.user)
+    return HttpResponse(serializers.serialize('json', product_item))
+
+@csrf_exempt
+def add_product_ajax(request):
+    if request.method == 'POST':
+        name = request.POST.get("name")
+        amount = request.POST.get("amount")
+        price = request.POST.get("price")
+        dateAdded = request.POST.get("date_added")
+        description = request.POST.get("description")
+        user = request.user
+
+        new_product = Product(name=name, amount = amount, date_added = dateAdded,price=price, description=description, user=user)
+        new_product.save()
+
+        return HttpResponse(b"CREATED", status=201)
+
+    return HttpResponseNotFound()
+
 def delete_product(request, id):
-    product = Product.objects.get()
+    product = Product.objects.get(pk = id)
     product.delete()
     return HttpResponseRedirect(reverse('main:show_main'))
 
 def decrement_product(request, id):
-    product = Product.objects.get(pk = id)
+    product = Product.objects.get(id = id)
     product.amount -= 1
     product.save()
     return HttpResponseRedirect(reverse('main:show_main'))
 
 def increment_product(request, id):
-    product = Product.objects.get(pk = id)
+    product = Product.objects.get(id = id)
     product.amount += 1
     product.save()
     return HttpResponseRedirect(reverse('main:show_main'))
