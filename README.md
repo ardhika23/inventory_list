@@ -895,386 +895,672 @@ In the end, it comes down to individual prefrence and the particular requirement
    
    - base.html
   
-```
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    {% block meta %}
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    {% endblock meta %}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <style>
-        body {
-            background-color: rgb(245, 245, 220);
-            ;
-
-        }
-
-        table {
-            background-color: rgb(255, 230, 204);
-        }
-
-        .navbar {
-            background-color: #E8A87C;
-        }
-
-        .card {
-            background-color: rgb(255, 230, 204);
-        }
-    </style>
-</head>
-
-<body>
-    {% block content %}
-    {% endblock content %}
-</body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-    crossorigin="anonymous"></script>
-
-</html>
+   ```
+   {% load static %}
+   <!DOCTYPE html>
+   <html lang="en">
    
-```
+   <head>
+       {% block meta %}
+       <meta charset="UTF-8" />
+       <meta name="viewport" content="width=device-width, initial-scale=1">
+       {% endblock meta %}
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+       <style>
+           body {
+               background-color: rgb(245, 245, 220);
+               ;
+   
+           }
+   
+           table {
+               background-color: rgb(255, 230, 204);
+           }
+   
+           .navbar {
+               background-color: #E8A87C;
+           }
+   
+           .card {
+               background-color: rgb(255, 230, 204);
+           }
+       </style>
+   </head>
+   
+   <body>
+       {% block content %}
+       {% endblock content %}
+   </body>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+       crossorigin="anonymous"></script>
+   
+   </html>
+      
+   ```
 
    - main.html
 
-```
-{% extends 'base.html' %}
-
-{% block content %}
-
-<nav class="navbar" style="background-color: bisque;">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-            <h2>Inventory List Page</h2>
-        </a>
-
-        <span class="navbar-text">
-            <h3>Welcome, {{ name }}</h3>
-            <span>{{ class }}</span>
-        </span>
-
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'main:logout' %}">Logout</a>
-                </li>
-            </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-        </div>
-    </div>
-</nav>
-
-<style>
-    .space-below-navbar {
-        margin-top: 50px;
-    }
-</style>
-
-<div class="container space-below-navbar">
-    <div class="row justify-content-center">
-        <div class="col-md-10">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Amount</th>
-                        <th>Price</th>
-                        <th>Description</th>
-                        <th>Date Added</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for product in products %}
-                    <tr>
-                        <td>{{product.name}}</td>
-                        <td>
-                            <div class="amount-box">
-                                <a href="{% url 'main:decrement_product' product.id %}">
-                                    <button class="btn btn-primary btn-sm">-</button>
-                                </a>
-                                <span class="amount-value">{{product.amount}}</span>
-                                <a href="{% url 'main:increment_product' product.id %}">
-                                    <button class="btn btn-primary btn-sm">+</button>
-                                </a>
-                            </div>
-                        </td>
-                        <td>{{product.price}}</td>
-                        <td>{{product.description}}</td>
-                        <td>{{product.date_added}}</td>
-                        <td>
-                            <a href="edit-product/{{ product.id }}">
-                                <button type="submit" class="btn btn-dark">Edit Product</button>
-                            </a>
-                            <a href="delete-product/{{ product.id }}">
-                                <button class="btn btn-dark">Delete Product</button>
-                            </a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-
-<style>
-    .space-below-table {
-        margin-bottom: 50px;
-    }
-</style>
-
-<p>You have saved {{counter}} items in this application</p>
-
-<style>
-    .btn-standard {
-        width: 200px;
-        height: 50px;
-        display: inline-block;
-        text-align: center;
-        vertical-align: middle;
-        padding: 10px 20px;
-    }
-
-    table td,
-    table th {
-        text-align: center;
-        padding: 10px 5px;
-    }
-
-    table {
-        border-collapse: collapse;
-        width: 100%;
-    }
-
-    table,
-    th,
-    td {
-        border: 1px solid black;
-    }
-
-    .amount-value {
-        margin: 0 10px;
-    }
-
-    .table.table-bordered tbody tr:last-child {
-        background-color: lightgray;
-        color: black;
-    }
-</style>
-
-<h5>Last login session: {{ last_login }}</h5>
-
-<a href="{% url 'main:create_product' %}">
-    <button>
-        Add New Product
-    </button>
-</a>
-
-<a href="{% url 'main:logout' %}">
-    <button>
-        Logout
-    </button>
-</a>
-
-{% endblock content %}
-```
+   ```
+   {% extends 'base.html' %}
+   
+   {% block content %}
+   
+   <nav class="navbar" style="background-color: bisque;">
+       <div class="container-fluid">
+           <a class="navbar-brand" href="#">
+               <h2>Inventory List Page</h2>
+           </a>
+   
+           <span class="navbar-text">
+               <h3>Welcome, {{ name }}</h3>
+               <span>{{ class }}</span>
+           </span>
+   
+           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+               aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+           </button>
+           <div class="collapse navbar-collapse" id="navbarSupportedContent">
+               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                   <li class="nav-item">
+                       <a class="nav-link active" aria-current="page" href="/">Home</a>
+                   </li>
+                   <li class="nav-item">
+                       <a class="nav-link" href="{% url 'main:logout' %}">Logout</a>
+                   </li>
+               </ul>
+               <form class="d-flex" role="search">
+                   <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                   <button class="btn btn-outline-success" type="submit">Search</button>
+               </form>
+           </div>
+       </div>
+   </nav>
+   
+   <style>
+       .space-below-navbar {
+           margin-top: 50px;
+       }
+   </style>
+   
+   <div class="container space-below-navbar">
+       <div class="row justify-content-center">
+           <div class="col-md-10">
+               <table class="table table-bordered">
+                   <thead>
+                       <tr>
+                           <th>Name</th>
+                           <th>Amount</th>
+                           <th>Price</th>
+                           <th>Description</th>
+                           <th>Date Added</th>
+                           <th>Actions</th>
+                       </tr>
+                   </thead>
+                   <tbody>
+                       {% for product in products %}
+                       <tr>
+                           <td>{{product.name}}</td>
+                           <td>
+                               <div class="amount-box">
+                                   <a href="{% url 'main:decrement_product' product.id %}">
+                                       <button class="btn btn-primary btn-sm">-</button>
+                                   </a>
+                                   <span class="amount-value">{{product.amount}}</span>
+                                   <a href="{% url 'main:increment_product' product.id %}">
+                                       <button class="btn btn-primary btn-sm">+</button>
+                                   </a>
+                               </div>
+                           </td>
+                           <td>{{product.price}}</td>
+                           <td>{{product.description}}</td>
+                           <td>{{product.date_added}}</td>
+                           <td>
+                               <a href="edit-product/{{ product.id }}">
+                                   <button type="submit" class="btn btn-dark">Edit Product</button>
+                               </a>
+                               <a href="delete-product/{{ product.id }}">
+                                   <button class="btn btn-dark">Delete Product</button>
+                               </a>
+                           </td>
+                       </tr>
+                       {% endfor %}
+                   </tbody>
+               </table>
+           </div>
+       </div>
+   </div>
+   
+   <style>
+       .space-below-table {
+           margin-bottom: 50px;
+       }
+   </style>
+   
+   <p>You have saved {{counter}} items in this application</p>
+   
+   <style>
+       .btn-standard {
+           width: 200px;
+           height: 50px;
+           display: inline-block;
+           text-align: center;
+           vertical-align: middle;
+           padding: 10px 20px;
+       }
+   
+       table td,
+       table th {
+           text-align: center;
+           padding: 10px 5px;
+       }
+   
+       table {
+           border-collapse: collapse;
+           width: 100%;
+       }
+   
+       table,
+       th,
+       td {
+           border: 1px solid black;
+       }
+   
+       .amount-value {
+           margin: 0 10px;
+       }
+   
+       .table.table-bordered tbody tr:last-child {
+           background-color: lightgray;
+           color: black;
+       }
+   </style>
+   
+   <h5>Last login session: {{ last_login }}</h5>
+   
+   <a href="{% url 'main:create_product' %}">
+       <button>
+           Add New Product
+       </button>
+   </a>
+   
+   <a href="{% url 'main:logout' %}">
+       <button>
+           Logout
+       </button>
+   </a>
+   
+   {% endblock content %}
+   ```
 
    - login.html
 
-```
-<style>
-
-</style>
-
-{% extends 'base.html' %}
-
-{% block meta %}
-    <title>Login</title>
-    <!-- Make sure to include Bootstrap's CSS if not already in 'base.html' -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-{% endblock meta %}
-
-{% block content %}
-
-<div class="container h-100">
-    <div class="row justify-content-center h-100">
-        <div class="col-6 align-self-center">
-            <div class="card">
-                <div class="card-body">
-
-                    <h1 class="text-center">Inventory List</h1>
-
-                    <form method="POST" action="">
-                        {% csrf_token %}
-                        <div class="form-group">
-                            <label for="username">Username:</label>
-                            <input type="text" id="username" name="username" placeholder="Username" class="form-control">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="password">Password:</label>
-                            <input type="password" id="password" name="password" placeholder="Password" class="form-control">
-                        </div>
-
-                        <div class="text-center">
-                            <input class="btn btn-primary login_btn" type="submit" value="Login">
-                        </div>
-                    </form>
-
-                    {% if messages %}
-                        <ul class="mt-3">
-                            {% for message in messages %}
-                                <li>{{ message }}</li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}     
-
-                    <p class="text-center mt-3">Don't have an account yet? <a href="{% url 'main:register' %}">Register Now</a></p>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-{% endblock content %}
-```
+   ```
+   <style>
+   
+   </style>
+   
+   {% extends 'base.html' %}
+   
+   {% block meta %}
+       <title>Login</title>
+       <!-- Make sure to include Bootstrap's CSS if not already in 'base.html' -->
+       <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+   {% endblock meta %}
+   
+   {% block content %}
+   
+   <div class="container h-100">
+       <div class="row justify-content-center h-100">
+           <div class="col-6 align-self-center">
+               <div class="card">
+                   <div class="card-body">
+   
+                       <h1 class="text-center">Inventory List</h1>
+   
+                       <form method="POST" action="">
+                           {% csrf_token %}
+                           <div class="form-group">
+                               <label for="username">Username:</label>
+                               <input type="text" id="username" name="username" placeholder="Username" class="form-control">
+                           </div>
+                           
+                           <div class="form-group">
+                               <label for="password">Password:</label>
+                               <input type="password" id="password" name="password" placeholder="Password" class="form-control">
+                           </div>
+   
+                           <div class="text-center">
+                               <input class="btn btn-primary login_btn" type="submit" value="Login">
+                           </div>
+                       </form>
+   
+                       {% if messages %}
+                           <ul class="mt-3">
+                               {% for message in messages %}
+                                   <li>{{ message }}</li>
+                               {% endfor %}
+                           </ul>
+                       {% endif %}     
+   
+                       <p class="text-center mt-3">Don't have an account yet? <a href="{% url 'main:register' %}">Register Now</a></p>
+   
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+   
+   {% endblock content %}
+   ```
 
 4. register.html
 
-```
-<style>
-
-</style>
-
-{% extends 'base.html' %}
-
-{% block meta %}
-    <title>Register</title>
-    <!-- Make sure to include Bootstrap's CSS if not already in 'base.html' -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-{% endblock meta %}
-
-{% block content %}
-
-<div class="container h-100">
-    <div class="row justify-content-center h-100">
-        <!-- Adjusting the column width here -->
-        <div class="col-8 align-self-center">
-            <div class="card">
-                <!-- Adding some custom padding inside the card for more spacing -->
-                <div class="card-body py-5 px-4">
-
-                    <div class="login">
-
-                        <h1>Register</h1>
-
-                        <form method="POST">
-                            {% csrf_token %}
-                            <table>
-                                {{ form.as_table }}
-                                <tr>
-                                    <td></td>
-                                    <td><input type="submit" name="submit" value="Daftar"/></td>
-                                </tr>
-                            </table>
-                        </form>
-
-                        {% if messages %}
-                            <ul>
-                                {% for message in messages %}
-                                    <li>{{ message }}</li>
-                                {% endfor %}
-                            </ul>
-                        {% endif %}
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-{% endblock content %}
-
-```
+   ```
+   <style>
+   
+   </style>
+   
+   {% extends 'base.html' %}
+   
+   {% block meta %}
+       <title>Register</title>
+       <!-- Make sure to include Bootstrap's CSS if not already in 'base.html' -->
+       <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+   {% endblock meta %}
+   
+   {% block content %}
+   
+   <div class="container h-100">
+       <div class="row justify-content-center h-100">
+           <!-- Adjusting the column width here -->
+           <div class="col-8 align-self-center">
+               <div class="card">
+                   <!-- Adding some custom padding inside the card for more spacing -->
+                   <div class="card-body py-5 px-4">
+   
+                       <div class="login">
+   
+                           <h1>Register</h1>
+   
+                           <form method="POST">
+                               {% csrf_token %}
+                               <table>
+                                   {{ form.as_table }}
+                                   <tr>
+                                       <td></td>
+                                       <td><input type="submit" name="submit" value="Daftar"/></td>
+                                   </tr>
+                               </table>
+                           </form>
+   
+                           {% if messages %}
+                               <ul>
+                                   {% for message in messages %}
+                                       <li>{{ message }}</li>
+                                   {% endfor %}
+                               </ul>
+                           {% endif %}
+   
+                       </div>
+   
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+   
+   {% endblock content %}
+   
+   ```
 
    - register.html
 
-```
-<style>
+   ```
+   <style>
+   
+   </style>
+   
+   {% extends 'base.html' %}
+   
+   {% block meta %}
+       <title>Register</title>
+       <!-- Make sure to include Bootstrap's CSS if not already in 'base.html' -->
+       <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+   {% endblock meta %}
+   
+   {% block content %}
+   
+   <div class="container h-100">
+       <div class="row justify-content-center h-100">
+           <!-- Adjusting the column width here -->
+           <div class="col-8 align-self-center">
+               <div class="card">
+                   <!-- Adding some custom padding inside the card for more spacing -->
+                   <div class="card-body py-5 px-4">
+   
+                       <div class="login">
+   
+                           <h1>Register</h1>
+   
+                           <form method="POST">
+                               {% csrf_token %}
+                               <table>
+                                   {{ form.as_table }}
+                                   <tr>
+                                       <td></td>
+                                       <td><input type="submit" name="submit" value="Daftar"/></td>
+                                   </tr>
+                               </table>
+                           </form>
+   
+                           {% if messages %}
+                               <ul>
+                                   {% for message in messages %}
+                                       <li>{{ message }}</li>
+                                   {% endfor %}
+                               </ul>
+                           {% endif %}
+   
+                       </div>
+   
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+   
+   {% endblock content %}
+   
+   ```
 
-</style>
+</details>
 
-{% extends 'base.html' %}
+---
 
-{% block meta %}
-    <title>Register</title>
-    <!-- Make sure to include Bootstrap's CSS if not already in 'base.html' -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-{% endblock meta %}
 
-{% block content %}
+<details>
+<summary>Assignment 6: JavaScript and Asynchronous JavaScript</summary>
 
-<div class="container h-100">
-    <div class="row justify-content-center h-100">
-        <!-- Adjusting the column width here -->
-        <div class="col-8 align-self-center">
-            <div class="card">
-                <!-- Adding some custom padding inside the card for more spacing -->
-                <div class="card-body py-5 px-4">
+## Questions and Answers
 
-                    <div class="login">
+### -> Explain the difference between asynchronous programming and synchronous programming.
 
-                        <h1>Register</h1>
+As usual, I'll use analogies to explain the differences between the two in a particular context; the goal is to make it simple to understand.
 
-                        <form method="POST">
-                            {% csrf_token %}
-                            <table>
-                                {{ form.as_table }}
-                                <tr>
-                                    <td></td>
-                                    <td><input type="submit" name="submit" value="Daftar"/></td>
-                                </tr>
-                            </table>
-                        </form>
+Synchronous Programming: Set yourself in front of a fast-food restaurant counter. You order a hamburger. You just have to wait, even if the burger takes a while to cook. After you got your burger, you don't do anything else or place any other orders. You don't order a drink until you've received your burger.
 
-                        {% if messages %}
-                            <ul>
-                                {% for message in messages %}
-                                    <li>{{ message }}</li>
-                                {% endfor %}
-                            </ul>
-                        {% endif %}
+Synchronous programming operates in this way. The software initiates a task (such as placing a burger order) and waits for it to finish before going on to the next one. Similar to a single-lane road, one car must wait for the one in front of it to move before moving forward.
 
-                    </div>
+Asynchronous Programming: Now take an alternative situation. You find yourself at the fast-food counter. A burger is what you order. This time, though, you decide not to wait there and instead go get a drink, get some napkins, or maybe just talk to a buddy. You do multiple tasks. And you can pick up your burger when it's ready, which will be announced by someone.
 
+This is the operation mechanism of asynchronous programming. When an activity (like placing a burger order) begins, the programme doesn't wait for it to be completed. It goes on to other assignments. The programme receives notification when the initial task is finished and handles the result. Similar to a multi-lane motorway, numerous cars can travel simultaneously without having to wait for it.
+
+In conclusion: 
+Synchronous: Focus on one task at a time. Hold off on moving on until it is finished.
+Asynchronous: Begin a task, put it on hold, and return to it later.
+
+Developers can write more responsive and efficient programmes by utilising asynchronous programming, particularly when handling lengthy processes like reading a huge file or retrieving data from the internet.
+
+---
+
+### -> In the implementation of JavaScript and AJAX, there is an implemented paradigm called the event-driven programming paradigm. Explain what this paradigm means and give one example of its implementation in this assignment.
+
+I will use relateable situation to help illustrate the concept of event driven programming:
+
+Event-Driven Programming Paradigm: Picture yourself at a large gathering of people at a party. As the DJ, you don't pick the music; instead, you wait for people to approach you and make requests. You play the song that someone asks every time. Thus, you're "responding" to guests' song requests as they come in, rather than just playing songs in a set order.
+
+Event-driven programming operates in this manner. When a given event, like a song request, is received, your programme (the DJ) waits for it and responds by executing specified commands or operations (playing the song).
+
+JavaScript & AJAX Example: 
+
+Assume for the moment that our webpage has a bell icon. We wish to use AJAX to retrieve and show notifications from a server when a user clicks this bell.
+Illustration Situation:
+- Web Page: The party venue.
+- Bell Icon: The DJ booth.
+- User Click: A guest walking up to request a song.
+- Fetching Notifications: Playing the requested song.
+- Displaying Notifications: Everyone hearing the song at the party.
+
+Implementation:
+
+1. HTML  (Setting up our party venue):
+   html
+   ```
+   <!DOCTYPE html>
+   <html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Event-Driven Party</title>
+   </head>
+   <body>
+       <button id="bellIcon">🔔</button>
+       <div id="notificationArea"></div>
+   
+       <script src="script.js"></script>
+   </body>
+   </html>
+   ```
+
+2. JavaScript (script.js)  (Setting up our DJ to listen to song requests):
+   javascript
+   ```
+   document.getElementById('bellIcon').addEventListener('click', function() {
+       // When the bell icon is clicked, make an AJAX request.
+       fetch('https://api.example.com/notifications')
+           .then(response => response.json())
+           .then(notifications => {
+               // Display the received notifications.
+               document.getElementById('notificationArea').textContent = JSON.stringify(notifications);
+           })
+           .catch(error => {
+               console.error("There was an error fetching the notifications", error);
+           });
+   });
+   ```
+
+Summary:
+Like a DJ at a party, event-driven programming involves taking requests for songs and playing them. In our web example, the programme waits for a click on the bell symbol, and then it fetches and shows notifications.
+
+---
+
+### -> Explain the implementation of asynchronous programming in AJAX.
+
+Say you want to view the most recent comments on a post on a website. By using AJAX, the website may update a select section of the page with the new comments without having to refresh the entire page.
+
+On technically basis, asynchronous AJAX usage is equivalent to telling the web browser to "go fetch this data and let me know when you have it." I'm going to carry out other jobs in the meantime." This makes sure that your browsing is efficient, multitasking, and smooth. 
+
+Asynchronous programming is excellent since it allows websites to update and fetch data without making you wait unnecessarily. This is particularly beneficial when using AJAX.
+
+---
+
+### -> In this semester, the implementation of AJAX is done using the Fetch API rather than the jQuery library. Compare the two technologies and write down your opinion which technology is better to use.
+
+ jQuery AJAX: 
+When I discovered AJAX for the first time, jQuery was invaluable. When it came to handling AJAX requests, jQuery provided a consistent and easier method without having to worry about the many differences that existed between different browsers and JavaScript.
+
+-Ease of use: I could make an AJAX request with a few lines of code that used `$.ajax()}. jQuery AJAX became popular among developers due to its ease of use.
+  
+- Browser Compatibility: jQuery's adept handling of browser incompatibilities was one of its strongest points. jQuery was essential to me if I was working on a project where compatibility for outdated browsers was key.
+ 
+-Weight: Although jQuery simplified things, it still requires loading as a library. It might be overkill and add extra weight to a web page if I only utilised jQuery for AJAX and ignored its other features.
+
+Fetch API: 
+In the present day, web development has changed significantly. JavaScript is now implemented more consistently across browsers, and the Fetch API is now built into most contemporary browsers.
+
+- Native & Modern: There is no need to load an additional library because the Fetch API is integrated into contemporary browsers. It is intended to be more durable and flexible than the previous AJAX `XMLHttpRequest` approach.
+  
+- Promises: One of my favourite features of Fetch is its use of JavaScript promises. It greatly improves the simpleness of managing asynchronous actions and chaining requests. It feels natural and straightforward to write something like `fetch().then().catch()}.
+
+- Learning curve: Promises and the subtleties of the Fetch API can be a little more difficult for beginners to understand than jQuery's AJAX, but it is straightforward once you get the feel of it.
+
+In my opinion, especially for new applications, I tend to use the Fetch API for AJAX these days. It doesn't require loading an external library and is contemporary and efficient. That does not, however, imply that jQuery's AJAX is out of date. I see no danger in keeping with jQuery for AJAX if I'm already using it in a project or if I'm maintaining an older project that depends a lot on jQuery.
+
+In the end, the decision between the Fetch API and jQuery AJAX should be made in considering the needs of the project, the intended user base, and individual preferences. However, it's always beneficial to know both, since knowing how to use alternative tools can offer flexibility in any kind of development situations.
+
+---
+
+### -> Explain how you implemented the checklist above step-by-step (not just following the tutorial).
+
+1. **Retrieving Data as JSON**
+   - In views.py, create a new function named get_product_json which accepts a request parameter.
+   - Inside this function, query the Product model to retrieve all products.
+   - Convert the queried data into JSON format using serializers.serialize('json', product_item).
+   - Return the serialized data as an HTTP response.
+   - In urls.py, set up a URL route for the get_product_json function.
+     
+     views.py:
+
+     ```
+      from django.http import JsonResponse
+      from django.core import serializers
+      from .models import Product
+      
+      def get_product_json(request):
+          product_items = Product.objects.all()
+          data = serializers.serialize('json', product_items)
+          return JsonResponse(data, safe=False)
+     ```
+
+     urls.py:
+
+     ```
+      from .views import get_product_json
+      
+      urlpatterns = [
+          # ... other paths ...
+          path('get_products/', get_product_json, name='get_product_json'),
+      ]
+
+     ```
+
+2. **Adding Product using AJAX**
+   - In views.py, define a new function named add_product_ajax that accepts a request parameter.
+   - Import the csrf_exempt decorator from django.views.decorators.csrf.
+   - Use the @csrf_exempt decorator above the add_product_ajax function to bypass CSRF protection.
+   - Inside the function, check if the request method is POST.
+   - Extract the product details from the request object.
+   - Create a new instance of the Product model using the extracted details and save it.
+   - If the product is added successfully, return an HTTP response with the "CREATED" status.
+
+     views.py:
+     ```
+      from django.views.decorators.csrf import csrf_exempt
+      
+      @csrf_exempt
+      def add_product_ajax(request):
+          if request.method == "POST":
+              name = request.POST['name']
+              price = request.POST['price']
+              description = request.POST['description']
+              
+              product = Product(name=name, price=price, description=description)
+              product.save()
+              
+              return JsonResponse({"status": "CREATED"}, status=201)
+          return JsonResponse({"status": "BAD REQUEST"}, status=400)
+
+     ```
+     
+3. **Setting up Routes**
+   - Open urls.py.
+   - Import the get_product_json and add_product_ajax functions.
+   - Add URL paths for both of these functions inside the urlpatterns list.
+
+     urls.py:
+
+     ```
+      from .views import add_product_ajax
+      
+      urlpatterns = [
+          # ... other paths ...
+          path('add_product_ajax/', add_product_ajax, name='add_product_ajax'),
+      ]
+
+     ```
+
+4. **Displaying Product Data using fetch() API**
+   - Navigate to main.html.
+   - Remove any previously created table code.
+   - Add a new <table> element with the ID product_table.
+   - Create two JavaScript functions: getProducts (to fetch product data) and refreshProducts (to display the fetched data).
+   - Use the fetch() API in getProducts to retrieve product data asynchronously.
+   - In the refreshProducts function, populate the table using the data fetched.
+   - Invoke the refreshProducts function to fill the table when the webpage loads.
+
+     main.html:
+     
+     ```
+      <table id="product_table"></table>
+      
+      <script>
+          async function getProducts() {
+              const response = await fetch('/get_products/');
+              return response.json();
+          }
+      
+          function refreshProducts() {
+              const table = document.getElementById('product_table');
+              // populate the table with fetched data
+          }
+      
+          window.onload = refreshProducts;
+      </script>
+
+     ```
+5.**Implementing a Modal for Product Addition**
+   - Implement a Bootstrap modal in your application.
+   - Inside the modal, set up a form to collect product details - including fields for the product's name, price, and description.
+
+    ```html
+    <!-- Add this modal code inside your HTML body -->
+    <div class="modal" id="productModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <form id="productForm">
+                        <input type="text" name="name" placeholder="Product Name">
+                        <input type="text" name="price" placeholder="Price">
+                        <textarea name="description" placeholder="Description"></textarea>
+                        <button type="button" onclick="addProduct()">Add Product</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    ```
 
-{% endblock content %}
+6.**Utilizing AJAX for Product Addition**
+   - Create a JavaScript function named addProduct.
+   - Inside this function, collect data from the modal form.
+   - Use the fetch() API to send a POST request with the form data to the add_product_ajax view.
+   - If the product is added successfully, invoke the refreshProducts function to update the product list on the main table.
+   - Clear the modal form fields after the product is added.
+   - Link the addProduct function to the "Add Product" button in the modal so that it is triggered when the button is clicked.
 
-```
+    ```html
+    <script>
+        async function addProduct() {
+            const form = document.getElementById('productForm');
+            const formData = new FormData(form);
+    
+            const response = await fetch('/add_product_ajax/', {
+                method: 'POST',
+                body: formData,
+            });
+    
+            if (response.status === 201) {
+                // Clear modal fields
+                form.reset();
+                // Refresh product list
+                refreshProducts();
+            }
+        }
+    </script>
+    ```
 
 </details>
 
